@@ -33,6 +33,7 @@ class TaskModal extends Component
             'title' => $this->title,
             'description' => $this->description,
             'general_notes' => $this->general_notes,
+            'user_id' => auth()->id(),
             'files' => $this->uploadFiles(), 
             'images' => $this->uploadImages(),
         ]);

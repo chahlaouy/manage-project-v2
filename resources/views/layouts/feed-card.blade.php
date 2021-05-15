@@ -1,4 +1,4 @@
-<div class="bg-gray-100 py-4 relative shadow-md rounded p-4">
+<div class="bg-gray-100 py-4 relative shadow-md rounded p-4 mt-4">
                 
     <h3 class="text-lg font-bold mb-8"> {{ __('Activity feed') }} </h3>
 

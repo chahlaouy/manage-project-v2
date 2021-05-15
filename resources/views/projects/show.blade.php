@@ -26,7 +26,7 @@
             </div>
         </header> 
     </x-slot>
-    <div x-data="{showModal : false, showTaskModalDetails: false}">
+    <div x-data="{showModal : false}">
         <div x-show="showModal" class="animate__animated absolute top-0 right-0 w-full min-h-screen z-50 py-12 bg-gray-900 bg-opacity-10" :class="showModal ? 'animate__slideInUp' : ''">
             <livewire:task-modal :project="$project" />
         </div>
@@ -37,10 +37,12 @@
         </div>
         <div class="flex">
             <div id="tasks" class="flex-1 mr-4">
-                <livewire:tasks :project="$project"/> 
+                @include('layouts.tasks')
+                
             </div>
             <div class="w-72 mr-4">
                 @include('layouts.card')
+                <livewire:activity-feed :project="$project" />
                 <div class="mt-8 bg-white py-4 relative shadow-md rounded">
                     <span class="block text-xl font-normal px-8 border-l-4 border-purple-600 py-3 mb-6">
                         {{ __('Notes') }}
@@ -65,10 +67,9 @@
                     </form>
                 </div>
                 
+                
             </div>
-            <div class="w-72 shadow-2xl flex-shrink-0">
-                <livewire:activity-feed :project="$project" />
-            </div>
+            
         </div>
     </div>
     

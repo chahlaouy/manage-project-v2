@@ -19,11 +19,14 @@ class CreateTasksTable extends Migration
             $table->string('description');
             $table->text('general_notes');
             $table->boolean('completed')->default(false);
+            $table->boolean('in_progress')->default(false);
             $table->foreignId('project_id');
+            $table->foreignId('user_id');
             $table->json('images')->nullable();
             $table->json('files')->nullable();
 
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
