@@ -58,4 +58,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public function projects(){
+
+        return $this->hasMany(Project::class, 'owner_id');
+    }
+
+    public function timeline(){
+
+        return $this->hasMany(Activity::class);
+    }
 }
