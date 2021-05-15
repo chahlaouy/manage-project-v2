@@ -1,4 +1,5 @@
 <div class="max-w-4xl mx-auto relative">
+    
     <div class="bg-white shadow-2xl rounded-md">
         <div class="flex items-center justify-between rounded-t-md px-8 py-4 bg-gray-100 mb-8">
             <div class="flex items-center">
@@ -13,7 +14,7 @@
                     </svg>
                 </span>
                 <h3 class="font-bold capitalize text-lg leading-tight text-gray-500">
-                    {{ $task->title }}
+                    {{ $title }}
                 </h3>
             </div>
                 
@@ -205,14 +206,14 @@
 
             </div>
 
-            {{-- Attach accordion --}}
+            {{-- description accordion --}}
             
             <div class="" x-show="descActive">
                 <label class="block mb-8">
                     <span 
                     class="text-gray-700">  {{__('Title')}}  </span>
                     <input 
-                    wire:model="title"
+                    wire:model="task.title"
                     id="taskTitle"
                     name="title"
                     id="title"
@@ -227,7 +228,7 @@
                     <span 
                     class="text-gray-700">  {{__('Description')}}  </span>
                     <input 
-                    wire:model="description"
+                    wire:model="task.description"
                     id="taskDescription"
                     name="description"
                     id="description"
@@ -240,7 +241,8 @@
                 @enderror
                 <label class="block mb-8">
                     <span class="block text-gray-500 text-lg mb-4">{{ __('Add notes') }}</span>
-                    <textarea wire:model="general_notes" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-purple-500" rows="5" spellcheck="false"></textarea>
+                    <textarea wire:model="task.general_notes" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-purple-500" rows="5" spellcheck="false">
+                    </textarea>
                 </label>
                 @error('general_notes')
                     <span class="text-red-400">{{$message}}</span>
@@ -278,6 +280,34 @@
                     <span class="text-red-400">{{$message}}</span>
                 @enderror
             </div>
+
+            {{-- Attach Images --}}
+
+            <div class="" x-show="imagesActive">
+
+                <div class="flex items-center justify-center">
+                    <div class="w-full grid grid-cols-3 gap-4">
+                        @forelse ($taskClone->images as $image)
+                            <img src="{{asset('uploads/' . $image)}}" alt="" class="w-full rounded">
+                            
+                        @empty
+                            <div class="px-8 py-2 rounded bg-gray-100">
+                                {{ __('This task has no images associasted with it') }}
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+                @error('files')
+                    <span class="text-red-400">{{$message}}</span>
+                @enderror
+                @error('images')
+                    <span class="text-red-400">{{$message}}</span>
+                @enderror
+            </div>
+
+
+
+
         </form>
     </div>
 </div>
