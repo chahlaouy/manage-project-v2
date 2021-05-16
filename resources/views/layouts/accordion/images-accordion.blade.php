@@ -62,11 +62,5 @@
                 @endforelse
             </div>
         </div>
-        @error('files')
-            <span class="text-red-400">{{$message}}</span>
-        @enderror
-        @error('images')
-            <span class="text-red-400">{{$message}}</span>
-        @enderror
     </div>
 </div>

@@ -1,5 +1,6 @@
 <div class="max-w-4xl mx-auto relative">
-    <div class="absolute bg-white bg-opacity-60 w-full h-full top-0 right-0 rounded" wire:loading>
+    
+    <div class="absolute bg-white bg-opacity-60 w-full h-full top-0 right-0 rounded" wire:loading wire:target="updateTask, inCompleteTask, completeTask, inProgressTask, showTaskModalDetails">
         <div class="h-full flex items-center justify-center">
             <div class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-purple-500">
                 <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -42,17 +43,15 @@
                     @include('layouts.modal-links.complete-button')
                 </div>
 
-               
-
-               
-
-                @include('layouts.modal-links.close-button')
+               <div class="cursor-pointer">
+                   @include('layouts.modal-links.close-button')
+               </div>
 
             </div>
         </div>
         
         <form 
-            wire:submit.prevent="submitForm" 
+            wire:submit.prevent="updateTask" 
             class="p-8" 
             x-data="{ 
                 attachActive: false, 
@@ -81,6 +80,8 @@
             @include('layouts.accordion.attach-accordion')
 
             @include('layouts.accordion.images-accordion')
+            
+            @include('layouts.accordion.files-accordion')
 
 
 

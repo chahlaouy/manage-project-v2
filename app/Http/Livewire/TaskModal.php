@@ -9,8 +9,6 @@ class TaskModal extends Component
 {
     use WithFileUploads;
 
-    
-
     public $project;
     public $images = [];
     public $description;
@@ -29,7 +27,7 @@ class TaskModal extends Component
     {
         $this->validate();
         
-        $task = $this->project->tasks()->create([
+        $this->project->tasks()->create([
             'title' => $this->title,
             'description' => $this->description,
             'general_notes' => $this->general_notes,
