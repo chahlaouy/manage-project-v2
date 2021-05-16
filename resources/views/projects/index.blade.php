@@ -16,7 +16,7 @@
                 </button>
                 <div 
                 x-show="showModal" 
-                class="animate__animated absolute top-0 right-0 w-full min-h-screen z-50 py-12 bg-gray-900 bg-opacity-10" :class="showModal ? 'animate__slideInUp' : ''">
+                class="animate__animated fixed top-0 right-0 w-full h-screen z-50 py-12 bg-gray-900 bg-opacity-10 overflow-scroll" :class="showModal ? 'animate__slideInUp' : ''">
                     <livewire:project-modal />
                 </div>
             @endcan

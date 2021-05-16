@@ -16,7 +16,7 @@ class ActivityFeed extends Component
     public function render()
     {
         return view('livewire.activity-feed', [
-            'activities' => $this->project->activities
+            'activities' => $this->project->activities()->take(4)->get()
         ]);
     }
 }

@@ -8,18 +8,45 @@ use Livewire\Component;
 class Tasks extends Component
 {
     public $project;
-    public $tasks;
+
+    public $inCompletedTasks;
+    public $inProgressTasks;
+    public $completedTasks;
+
+    public $task;
+
+    public $description = '';
+    public $general_notes = '';
+    public $title = '';
+
+    public $showTaskModalDetails = false;
+    
     protected $listeners = ['TaskAdded' => 'taskAdded'];
 
-    public function toggleComplete($taskId){
-        $task = Task::find($taskId);
-        
-        if( !$task->completed){
 
-            $task->complete();
-            return;
-        }
-        $task->incomplete();
+    public function showTaskModalDetails($id){   
+        $this->task = Task::where('id', $id)->firstOrFail();
+        $this->description = $this->task->description;
+        $this->general_notes = $this->task->general_notes;
+        $this->title = $this->task->title;
+        $this->showTaskModalDetails = true;
+    }
+    
+    public function inCompleteTask(){
+        
+        $this->task->incomplete();
+
+    }
+
+    public function completeTask(){
+        
+        $this->task->complete();
+
+    }
+
+    public function inProgressTask(){
+        
+        $this->task->inProgress();
 
     }
 
@@ -29,11 +56,28 @@ class Tasks extends Component
 
     public function render()
     {
-        $this->tasks = $this->project->tasks;
-
-        return view('livewire.tasks',[
-            'tasks' => $this->tasks
-        ]
-    );
+        
+        $this->inCompletedTasks = $this
+                                    ->project
+                                        ->tasks()
+                                            ->where('incompleted', true)
+                                                ->latest()
+                                                    ->take(3)
+                                                        ->get();
+        $this->completedTasks = $this
+                                    ->project
+                                        ->tasks()
+                                            ->where('completed', true)
+                                                ->latest()
+                                                    ->take(3)
+                                                        ->get();
+        $this->inProgressTasks = $this
+                                    ->project
+                                        ->tasks()
+                                            ->where('in_progress', true)
+                                                ->latest()
+                                                    ->take(3)
+                                                        ->get();
+        return view('livewire.tasks');
     }
 }

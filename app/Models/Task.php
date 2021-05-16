@@ -31,13 +31,28 @@ class Task extends Model
 
     public function complete(){
         $this->update([
-            'completed' => true 
+            'in_progress' => false,
+            'incompleted' => false,
+            'completed' => true
         ]);
         $this->recordActivity('completed_task');
     }
     public function incomplete(){
         $this->update([
-            'completed' => false 
+            'completed' => false,
+            'in_progress' => false,
+            'incompleted' => true
+
+        ]);
+
+        $this->recordActivity('incompleted_task');
+    }
+    public function inProgress(){
+        $this->update([
+            'completed' => false,
+            'incompleted' => false,
+            'in_progress' => true
+
         ]);
 
         $this->recordActivity('incompleted_task');

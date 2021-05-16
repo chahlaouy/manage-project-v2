@@ -27,7 +27,7 @@
         </header> 
     </x-slot>
     <div x-data="{showModal : false}">
-        <div x-show="showModal" class="animate__animated absolute top-0 right-0 w-full min-h-screen z-50 py-12 bg-gray-900 bg-opacity-10" :class="showModal ? 'animate__slideInUp' : ''">
+        <div x-show="showModal" class="animate__animated fixed top-0 right-0 w-full h-screen z-50 py-12 bg-gray-900 bg-opacity-10 overflow-scroll" :class="showModal ? 'animate__slideInUp' : ''">
             <livewire:task-modal :project="$project" />
         </div>
         <div class="flex items-end justify-between mb-4">

@@ -47,7 +47,7 @@ class TaskModal extends Component
             $path = "/" . "{$this->project->title}" . "/images/" ."{$this->title}";
             foreach ($this->images as $image) {
                 $name= time() . '.' . $image->getClientOriginalName();
-                array_push($images, $path . '/' .$name);
+                array_push($images, "$path" . '/' ."$name");
                 $image->storeAs($path, $name, 'uploads'); 
             }
         }
@@ -61,7 +61,7 @@ class TaskModal extends Component
             $path = "/" . "{$this->project->title}" . "/files/" ."{$this->title}";
             foreach ($this->files as $file) {
                 $name= time() . '.' . $file->getClientOriginalName();
-                array_push($files, $path . '/' .$name);
+                array_push($files, "$path" . '/' ."$name");
                 $file->storeAs($path, $name, 'uploads'); 
             }
         }
